@@ -1,1 +1,90 @@
-HELLO WORLD
+<!doctype html>
+
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>3D 個人網站範例</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: #e8f3eb;
+    }/* 文字資訊區域 */
+.overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 20px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  width: 260px;
+}
+.overlay h1 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  color: #2e5e3a;
+}
+.overlay p {
+  margin: 5px 0;
+  color: #333;
+  font-size: 14px;
+}
+
+  </style>
+</head>
+<body>  <div class="overlay">
+    <h1>3D 個人頁面</h1>
+    <p>這是一個使用 Three.js 製作的 3D 背景網頁範例。</p>
+    <p>你可以放上介紹、技能、作品等內容。</p>
+  </div>  <!-- Three.js CDN -->  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>  <script>
+    // ======== 基本場景設定 ========
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // ======== 加入柔和綠色光 ========
+    const light = new THREE.PointLight(0x66cc88, 2, 100);
+    light.position.set(10, 10, 10);
+    scene.add(light);
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambient);
+
+    // ======== 3D 物件：旋轉綠色立方體 ========
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshStandardMaterial({ color: 0x4CAF50 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    camera.position.z = 3;
+
+    // ======== 動畫迴圈 ========
+    function animate() {
+      requestAnimationFrame(animate);
+
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // ======== 視窗大小調整 ========
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script></body>
+</html>
