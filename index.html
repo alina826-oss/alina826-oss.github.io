@@ -1,190 +1,221 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Personal Showcase</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Space</title>
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;700&display=swap" rel="stylesheet">
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Three.js CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-<style>
-    body {
-        margin: 0;
-        font-family: "Poppins", sans-serif;
-        background: #0e0e12;
-        color: #eee;
-        overflow-x: hidden;
-    }
+    <style>
+        /* --- Global --- */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #0f1116;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
 
-    /* ===== 3D Canvas Background ===== */
-    #bg {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: -10;
-    }
+        #bg3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+        }
 
-    /* ===== Header ===== */
-    header {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 0 20px;
-    }
+        /* --- Hero Section --- */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 10%;
+            position: relative;
+        }
 
-    header h1 {
-        font-size: 3.5rem;
-        font-weight: 600;
-        letter-spacing: 2px;
-        color: #e5dcff;
-        opacity: 0;
-    }
+        h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            opacity: 0;
+        }
 
-    header p {
-        font-size: 1.2rem;
-        margin-top: 15px;
-        opacity: 0;
-        color: #c9c3dd;
-        max-width: 600px;
-    }
+        .subtitle {
+            font-size: 1.6rem;
+            margin-top: 10px;
+            opacity: 0;
+            font-weight: 300;
+        }
 
-    /* ===== Section ===== */
-    section {
-        padding: 100px 10%;
-    }
+        /* --- Sections --- */
+        section {
+            padding: 140px 10%;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 0.9s ease;
+        }
 
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 20px;
-        border-left: 5px solid #a992ff;
-        padding-left: 15px;
-        opacity: 0;
-    }
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    .card {
-        background: rgba(255,255,255,0.05);
-        padding: 25px;
-        border-radius: 12px;
-        margin-bottom: 20px;
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(255,255,255,0.08);
-        transform: translateY(20px);
-        opacity: 0;
-        transition: 0.5s ease;
-    }
+        .glass-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 45px;
+            border-radius: 22px;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+        }
 
-    .card:hover {
-        background: rgba(255,255,255,0.1);
-    }
-</style>
+        h3 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        p {
+            line-height: 1.8;
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            opacity: 0.5;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- 3D 背景 Canvas -->
-<canvas id="bg"></canvas>
+<canvas id="bg3d"></canvas>
 
 <header>
-    <h1 class="fade-in">Creative Web Designer</h1>
-    <p class="fade-in">A clean, elegant, and responsive web experience crafted with modern 3D visuals, smooth interactions, and refined aesthetics.</p>
+    <h1 class="fade">Welcome.</h1>
+    <div class="subtitle fade">Step into a crafted digital experience.</div>
 </header>
 
-<section>
-    <h2 class="section-title">Featured Works</h2>
-
-    <div class="card">Project Concept 01 — Minimalistic UI/UX Design</div>
-    <div class="card">Project Concept 02 — Interactive 3D Experience</div>
-    <div class="card">Project Concept 03 — Web Animation Showcase</div>
+<section id="about">
+    <div class="glass-card">
+        <h3>About This Space</h3>
+        <p>
+            This is an enhanced version of a modern personal page featuring glassmorphism, 
+            advanced particle background, and smooth interactions. 
+            You may customize this content freely.
+        </p>
+    </div>
 </section>
 
-<section>
-    <h2 class="section-title">About This Site</h2>
-    <div class="card">This personal showcase template combines Three.js 3D motion with soft gradients, giving a premium-quality visual experience.</div>
+<section id="works">
+    <div class="glass-card">
+        <h3>Featured Works</h3>
+        <p>
+            Showcase your portfolio, design works, projects, or anything you wish to present.
+        </p>
+    </div>
 </section>
 
-<!-- jQuery 動畫 -->
+<section id="contact">
+    <div class="glass-card">
+        <h3>Contact</h3>
+        <p>
+            Add your social platforms or preferred ways for others to reach you.
+        </p>
+    </div>
+</section>
+
+<footer>
+    © Your Space — Crafted with Style
+</footer>
+
 <script>
-$(document).ready(function(){
+/* ------------------------------ */
+/* jQuery：淡入動畫 + 滾動觸發 */
+/* ------------------------------ */
+$(document).ready(function() {
+    $(".fade").each(function(i) {
+        $(this).delay(i * 350).animate({opacity: 1}, 1200);
+    });
 
-    // Header fade-in
-    $("header h1").delay(200).animate({ opacity: 1 }, 1000);
-    $("header p").delay(600).animate({ opacity: 1 }, 1000);
-
-    // Scroll animations
-    $(window).on("scroll", function(){
-        $(".section-title").each(function(){
-            if($(this).offset().top < $(window).scrollTop() + $(window).height() - 80){
-                $(this).animate({ opacity: 1 }, 800);
-            }
-        });
-
-        $(".card").each(function(){
-            if($(this).offset().top < $(window).scrollTop() + $(window).height() - 50){
-                $(this).css({
-                    opacity: 1,
-                    transform: "translateY(0)"
-                });
+    $(window).on("scroll", function() {
+        $("section").each(function() {
+            let trigger = $(window).scrollTop() + $(window).height() * 0.8;
+            if (trigger > $(this).offset().top) {
+                $(this).addClass("show");
             }
         });
     });
 });
-</script>
 
-<!-- Three.js 粒子背景效果 -->
-<script>
-const canvas = document.getElementById("bg");
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+
+/* ------------------------------ */
+/* Three.js 粒子流動背景 */
+/* ------------------------------ */
+const canvas = document.getElementById("bg3d");
+const renderer = new THREE.WebGLRenderer({canvas, alpha: true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+);
 
 camera.position.z = 5;
 
-// Particle system
-const particles = new THREE.BufferGeometry();
-const count = 2000;
-const positions = new Float32Array(count * 3);
+const particles = 15000;
+const geometry = new THREE.BufferGeometry();
+const positions = new Float32Array(particles * 3);
 
-for (let i = 0; i < count * 3; i++) {
-    positions[i] = (Math.random() - 0.5) * 10;
+for (let i = 0; i < particles * 3; i++) {
+    positions[i] = (Math.random() - 0.5) * 12;
 }
 
-particles.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+geometry.setAttribute(
+    "position",
+    new THREE.BufferAttribute(positions, 3)
+);
 
 const material = new THREE.PointsMaterial({
-    size: 0.03,
-    color: 0xa992ff,
+    color: 0x7f9cff,
+    size: 0.015,
+    transparent: true,
+    opacity: 0.85
 });
 
-const pointMesh = new THREE.Points(particles, material);
-scene.add(pointMesh);
+const particleSystem = new THREE.Points(geometry, material);
+scene.add(particleSystem);
 
 function animate() {
     requestAnimationFrame(animate);
-    pointMesh.rotation.y += 0.0008;
-    pointMesh.rotation.x += 0.0004;
+
+    particleSystem.rotation.y += 0.0008;
+    particleSystem.rotation.x += 0.0004;
+
     renderer.render(scene, camera);
 }
-
 animate();
 
-// Resize
 window.addEventListener("resize", () => {
-    renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
 });
 </script>
 
